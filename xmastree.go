@@ -14,14 +14,15 @@ func main() {
 	for {
 		newTree = []rune{}
 		for _, c := range Tree {
-			if c != '*' {
-				newTree = append(newTree, c)
-				continue
+			if c == '*' {
+                newTree = append(newTree, []rune(getColor())...)
 			}
 
-			newTree = append(newTree, []rune(getColor())...)
 			newTree = append(newTree, c)
-			newTree = append(newTree, []rune("\033[0m")...)
+
+			if c == '*' {
+                newTree = append(newTree, []rune("\033[0m")...)
+			}
 		}
 
 		fmt.Println(Clear)
